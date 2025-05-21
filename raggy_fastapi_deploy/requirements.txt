@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+sentence-transformers
+transformers
+torch
+scikit-learn
+faiss-cpu
