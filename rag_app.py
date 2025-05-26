@@ -6,7 +6,6 @@ import faiss
 import re
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
-from langchain.embeddings import HuggingFaceEmbeddings
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import os
@@ -54,7 +53,12 @@ documents = [
 ]
 
 # --- Embeddings ---
-embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2",
+    use_auth_token=False
+)
 texts = [doc.page_content for doc in documents]
 embeddings = embedding_model.embed_documents(texts)
 
